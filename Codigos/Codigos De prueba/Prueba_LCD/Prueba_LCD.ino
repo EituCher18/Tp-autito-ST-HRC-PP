@@ -55,9 +55,9 @@ void Codigo_Pruba_Con_AHT() {
   AHT_Hum = aht10.readHumidity();
   lcd.setCursor(0, 1);
   lcd.print("La Hum es");
-  lcd.setCursor(11, 1);
+  lcd.setCursor(10, 1);
   lcd.print(AHT_Hum);
-  lcd.setCursor(15, 1);
+  lcd.setCursor(14, 1);
   lcd.print("%");
 
   if (millis() - Ms >= 1000) {
