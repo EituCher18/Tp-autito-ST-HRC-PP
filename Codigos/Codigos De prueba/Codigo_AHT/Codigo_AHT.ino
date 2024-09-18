@@ -27,7 +27,7 @@ void setup() {
 }
 
 void loop() {
-  Humedad();
+  Temperatura_Y_Humedad();
 }
 
 

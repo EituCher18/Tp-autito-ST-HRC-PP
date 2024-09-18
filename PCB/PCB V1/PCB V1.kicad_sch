@@ -4430,12 +4430,6 @@
 		(uuid "94d86507-041c-4140-9979-14dc82d5a3b3")
 	)
 	(junction
-		(at 193.04 76.2)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "961bd943-7771-4204-89fa-9812fa46b5c1")
-	)
-	(junction
 		(at 66.04 118.11)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4458,12 +4452,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c4799e4b-e170-4d54-853e-772a0d3dbaa0")
-	)
-	(junction
-		(at 193.04 68.58)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ca52770e-f894-4ca9-aa5b-531addd77b2b")
 	)
 	(junction
 		(at 155.194 74.93)
@@ -4671,7 +4659,7 @@
 	)
 	(wire
 		(pts
-			(xy 193.04 74.93) (xy 193.04 76.2)
+			(xy 193.04 74.93) (xy 193.04 78.74)
 		)
 		(stroke
 			(width 0)
@@ -4801,26 +4789,6 @@
 	)
 	(wire
 		(pts
-			(xy 193.04 76.2) (xy 193.04 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "59aa4303-4d07-4300-84fa-349c9fcb2c5f")
-	)
-	(wire
-		(pts
-			(xy 193.04 76.2) (xy 201.93 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "59f85d7a-4221-43d0-810e-cbb2a0ec10aa")
-	)
-	(wire
-		(pts
 			(xy 120.65 101.6) (xy 120.65 104.14)
 		)
 		(stroke
@@ -4848,16 +4816,6 @@
 			(type default)
 		)
 		(uuid "5d9b2a65-1f97-498c-9a72-7d06bb66df1f")
-	)
-	(wire
-		(pts
-			(xy 193.04 68.58) (xy 201.93 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5ddd3491-363c-446a-8300-0502718ec008")
 	)
 	(wire
 		(pts
@@ -5048,16 +5006,6 @@
 			(type default)
 		)
 		(uuid "86d840cc-703d-4223-879a-10e6804d35f1")
-	)
-	(wire
-		(pts
-			(xy 193.04 67.31) (xy 193.04 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "87812b0f-069d-4a58-ae37-5a0602369416")
 	)
 	(wire
 		(pts
@@ -5441,7 +5389,7 @@
 	)
 	(wire
 		(pts
-			(xy 193.04 68.58) (xy 193.04 69.85)
+			(xy 193.04 67.31) (xy 193.04 69.85)
 		)
 		(stroke
 			(width 0)
@@ -6540,94 +6488,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Diode:1N4007")
-		(at 201.93 72.39 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "02e6a2b7-b156-4d4d-8b42-cfaaef11466a")
-		(property "Reference" "D10"
-			(at 204.47 71.1199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1N4007"
-			(at 204.47 73.6599 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 197.485 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
-			(at 201.93 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "1000V 1A General Purpose Rectifier Diode, DO-41"
-			(at 201.93 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 201.93 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 201.93 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "4f3e6d56-424f-48db-a9ee-b25969887540")
-		)
-		(pin "1"
-			(uuid "b705f2ba-592e-48fd-bd65-66dd26ce467f")
-		)
-		(instances
-			(project "PCB V1"
-				(path "/9d3c0d60-bbc5-4e33-843b-0a3b234644e7"
-					(reference "D10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 242.57 80.01 0)
 		(unit 1)
@@ -6824,71 +6684,6 @@
 			(project "PCB V1"
 				(path "/9d3c0d60-bbc5-4e33-843b-0a3b234644e7"
 					(reference "R4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 201.93 31.75 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "23e9af9e-8712-4b1c-a814-b721a9439111")
-		(property "Reference" "#PWR033"
-			(at 201.93 35.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 200.66 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 201.93 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 201.93 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 201.93 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3dcf6a34-bd2b-4057-a828-3a84b9d9751a")
-		)
-		(instances
-			(project "PCB V1"
-				(path "/9d3c0d60-bbc5-4e33-843b-0a3b234644e7"
-					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -7813,6 +7608,71 @@
 			(project "PCB V1"
 				(path "/9d3c0d60-bbc5-4e33-843b-0a3b234644e7"
 					(reference "Q2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 201.93 31.75 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "580a1a3e-f54f-41c8-8cae-5c004919a9a7")
+		(property "Reference" "#PWR04"
+			(at 201.93 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 201.93 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 201.93 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 201.93 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 201.93 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6a2c81b7-9361-4efd-adf8-72db6518acbb")
+		)
+		(instances
+			(project "PCB V1"
+				(path "/9d3c0d60-bbc5-4e33-843b-0a3b234644e7"
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -9012,8 +8872,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1.01K"
-			(at 180.086 88.138 0)
+		(property "Value" "22K"
+			(at 186.69 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
