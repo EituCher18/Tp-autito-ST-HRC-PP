@@ -129,7 +129,7 @@
 	(net 47 "unconnected-(ESP-1-IO32-Pad10)")
 	(net 48 "+5VANTESDELLAVE")
 	(net 49 "Net-(J2-Pin_2)")
-	(net 50 "unconnected-(ESP-1-IO35-Pad11)")
+	(net 50 "unconnected-(ESP-1-IO36-Pad14)")
 	(net 51 "Net-(U2-ADJ)")
 	(net 52 "Net-(D10-A)")
 	(net 53 "unconnected-(J3-Shield-Pad5)_0")
@@ -8935,7 +8935,7 @@
 		(descr "simple 3-pin terminal block, pitch 5.08mm, revamped version of bornier3")
 		(tags "terminal block bornier3")
 		(property "Reference" "J2"
-			(at 5.05 -4.65 270)
+			(at 5.05 -4.65 -90)
 			(layer "F.SilkS")
 			(uuid "2b8653b4-d70c-4606-a008-fa120ef1f001")
 			(effects
@@ -8946,7 +8946,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x03"
-			(at 5.08 5.08 270)
+			(at 5.08 5.08 -90)
 			(layer "F.Fab")
 			(uuid "c89dbd1c-d06f-4145-b121-a637d157426f")
 			(effects
@@ -9141,7 +9141,7 @@
 			(uuid "9d086944-dcf3-45f2-8917-aef821e752ea")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 5.08 0 270)
+			(at 5.08 0 -90)
 			(layer "F.Fab")
 			(uuid "da0c8c42-b3c3-4e27-a529-b9eed404ee21")
 			(effects
@@ -12361,7 +12361,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=10.16mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 10.16mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R1"
-			(at 5.08 -2.37 360)
+			(at 5.08 -2.37 0)
 			(layer "F.SilkS")
 			(uuid "a2fc83ef-f28a-452c-9a4e-b633b5267d9a")
 			(effects
@@ -12372,7 +12372,7 @@
 			)
 		)
 		(property "Value" "100"
-			(at 5.08 2.37 360)
+			(at 5.08 2.37 0)
 			(layer "F.Fab")
 			(uuid "ebeaae7b-af8e-4280-8887-8655fe5f52c7")
 			(effects
@@ -12587,7 +12587,7 @@
 			(uuid "052ab059-9ab4-421f-9424-2e093a3957c0")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 5.08 0 360)
+			(at 5.08 0 0)
 			(layer "F.Fab")
 			(uuid "3e0b8ecd-a543-4c25-9ba3-48b725ac0ae2")
 			(effects
@@ -19864,7 +19864,7 @@
 		(descr "simple 3-pin terminal block, pitch 5.08mm, revamped version of bornier3")
 		(tags "terminal block bornier3")
 		(property "Reference" "J1"
-			(at 5.05 -4.65 270)
+			(at 5.05 -4.65 -90)
 			(layer "F.SilkS")
 			(uuid "c12f3c7a-4546-4819-93fb-5bb3dc878f99")
 			(effects
@@ -19875,7 +19875,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x03"
-			(at 5.08 5.08 270)
+			(at 5.08 5.08 -90)
 			(layer "F.Fab")
 			(uuid "1d8afd44-3ea1-4fcc-aa1f-5b04b66fd3e8")
 			(effects
@@ -20070,7 +20070,7 @@
 			(uuid "fcab8727-70fd-48bf-8180-f1addb1bf7fd")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 5.08 0 270)
+			(at 5.08 0 -90)
 			(layer "F.Fab")
 			(uuid "18649570-161e-46ec-ae25-ca0c467169fd")
 			(effects
@@ -22876,7 +22876,7 @@
 			(drill 0.762)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 50 "unconnected-(ESP-1-IO35-Pad11)")
+			(net 31 "LDR")
 			(pinfunction "IO35")
 			(pintype "bidirectional")
 			(uuid "e266827d-1df7-4b29-939f-5fc1bd333846")
@@ -22909,7 +22909,7 @@
 			(drill 0.762)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net 31 "LDR")
+			(net 50 "unconnected-(ESP-1-IO36-Pad14)")
 			(pinfunction "IO36")
 			(pintype "bidirectional")
 			(uuid "8e75995c-e497-4275-b2d1-189282e21381")
@@ -26193,14 +26193,6 @@
 		(uuid "9395c440-7f10-46c2-8be5-3c2fc97f24b8")
 	)
 	(segment
-		(start 156.895 100.731042)
-		(end 155.623958 99.46)
-		(width 1)
-		(layer "B.Cu")
-		(net 31)
-		(uuid "1faaada8-67a9-41d5-91fb-836f651b3e5a")
-	)
-	(segment
 		(start 155.623958 99.46)
 		(end 154.5 99.46)
 		(width 1)
@@ -26209,20 +26201,12 @@
 		(uuid "8ac68b95-f3aa-42c6-b0d6-87009a0bb9f9")
 	)
 	(segment
-		(start 155.04 98.92)
-		(end 155.04 95)
+		(start 156.928958 100.731042)
+		(end 162.66 95)
 		(width 1)
 		(layer "B.Cu")
 		(net 31)
-		(uuid "a0172e94-dc04-4fa6-bb1f-a590fd131d93")
-	)
-	(segment
-		(start 154.5 99.46)
-		(end 155.04 98.92)
-		(width 1)
-		(layer "B.Cu")
-		(net 31)
-		(uuid "c224f03a-7009-4edf-8348-b9a4bc4fc8a4")
+		(uuid "a14012ae-6d7b-482c-8707-2df5d010ab3a")
 	)
 	(segment
 		(start 152.5 110.42)
@@ -26233,12 +26217,36 @@
 		(uuid "d0dd34cd-465e-4317-8638-4ab0c3bed4a6")
 	)
 	(segment
+		(start 156.351979 100.188021)
+		(end 155.623958 99.46)
+		(width 1)
+		(layer "B.Cu")
+		(net 31)
+		(uuid "e7a12101-f431-4855-8d5c-53eefea26f17")
+	)
+	(segment
 		(start 156.895 106.025)
 		(end 156.895 100.731042)
 		(width 1)
 		(layer "B.Cu")
 		(net 31)
 		(uuid "e8cba335-a701-42fa-a9b9-15385d7f53f7")
+	)
+	(segment
+		(start 156.351979 100.188021)
+		(end 156.895 100.731042)
+		(width 1)
+		(layer "B.Cu")
+		(net 31)
+		(uuid "e8d52de8-381e-4bbc-97c5-85d8e47b7944")
+	)
+	(segment
+		(start 156.895 100.731042)
+		(end 156.928958 100.731042)
+		(width 1)
+		(layer "B.Cu")
+		(net 31)
+		(uuid "fa548c5e-5a84-486c-b326-52b8e11124a6")
 	)
 	(segment
 		(start 99.06 96.09)

@@ -292,7 +292,6 @@ void loop() {
       }
       break;
     case Sum_Leds:
-
       if (digitalRead(Sensor_Puerta) == LOW) {
         lcd.clear();
         Maquina = Door;
