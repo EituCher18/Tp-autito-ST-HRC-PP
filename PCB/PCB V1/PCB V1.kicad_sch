@@ -5721,7 +5721,7 @@
 	(text_box "LDR\n"
 		(exclude_from_sim no)
 		(at 180.34 38.1 0)
-		(size 31.75 21.59)
+		(size 33.02 21.59)
 		(stroke
 			(width 0)
 			(type default)
@@ -6122,7 +6122,7 @@
 	)
 	(global_label "LDR"
 		(shape input)
-		(at 120.65 71.12 0)
+		(at 120.65 68.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6130,9 +6130,9 @@
 			)
 			(justify left)
 		)
-		(uuid "66fd5b3f-aefd-4140-8754-510b6f39ed73")
+		(uuid "63301a9b-72e8-4533-919e-1947e529797c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 127.2033 71.12 0)
+			(at 127.2033 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8565,7 +8565,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 188.722 49.276 90)
+			(at 190.5 49.53 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9873,7 +9873,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-220F-3_Vertical"
+		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
 			(at 237.49 58.42 0)
 			(effects
 				(font
@@ -10636,7 +10636,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-220F-3_Vertical"
+		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
 			(at 237.49 88.9 0)
 			(effects
 				(font

@@ -45,6 +45,7 @@ void Temperatura() {
 }
 
 void Temperatura_Y_Humedad() {
+delay(500);
   AHT_Tem = aht10.readTemperature();
   Serial.print("La temperatura es     ");
   Serial.print(AHT_Tem);

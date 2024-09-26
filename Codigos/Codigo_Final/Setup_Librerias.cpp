@@ -2,7 +2,6 @@
 void setupLibrerias() {
 
 
-  EasyBuzzer.setPin(BUZZER_PIN);
 
   // Inicializa la comunicación I2C
   Wire.begin();

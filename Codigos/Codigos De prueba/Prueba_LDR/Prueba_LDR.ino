@@ -11,5 +11,6 @@ Serial.begin(9600);
 void loop() {
   // put your main code here, to run repeatedly:
 //Serial.print("La lectura de LDR es    ");
+delay(500);
 Serial.println(analogRead(LDR));
 }

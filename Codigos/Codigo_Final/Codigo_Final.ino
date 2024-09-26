@@ -325,8 +325,7 @@ void loop() {
       }
       break;
     case Door:
-      EasyBuzzer.update();
-      EasyBuzzer.singleBeep(1000, 500);
+      Buzzer_Maquina();
       lcd.setCursor(0, 0);
       lcd.print("Hay una puerta");
       lcd.setCursor(0, 1);

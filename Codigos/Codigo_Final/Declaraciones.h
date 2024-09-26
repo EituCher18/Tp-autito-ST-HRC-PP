@@ -8,12 +8,12 @@
 #include <LiquidCrystal_I2C.h>
 #include <AHT10.h>  // Librería para utilizar el sensor AHT10
 #include <Preferences.h>
-#include <EasyBuzzer.h>
 Preferences preferences;
 //Variables de tiempo
 unsigned long Ms;
 unsigned long Ms_Baliza;
 unsigned long Ms_Eeprom;
+unsigned long Ms_Buzzer;
 
 
 //Pines
@@ -45,6 +45,7 @@ extern uint8_t Maquina_Baliza;
 extern uint8_t Puerta;
 extern uint8_t Intervalo;
 extern uint8_t Intervalo_Corto;
+extern uint8_t Maquina_Buzzer;
 enum Estados {
   INIT_HUMEDAD,
   INIT_TEMPERATURA,
@@ -72,6 +73,12 @@ enum Baliza {
   Off,
 };
 
+enum Door {
+  Buzzer_On,
+  Buzzer_Off
+
+};
+
 
 void setupLibrerias();
 
@@ -88,4 +95,6 @@ void SetupContadores();
 void SetupEeprom();
 
 void pines();
+
+void Buzzer_Maquina();
 #endif
