@@ -5856,6 +5856,28 @@
 		)
 		(uuid "d969817f-67d7-4718-aded-098d44d7e4c7")
 	)
+	(global_label "LED-A1"
+		(shape input)
+		(at 82.55 68.58 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0b3503e1-3be4-4117-bb73-bc6b82d8a7f9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.2472 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "SDA"
 		(shape input)
 		(at 156.21 50.8 0)
@@ -5944,6 +5966,28 @@
 			)
 		)
 	)
+	(global_label "RELE-B"
+		(shape input)
+		(at 120.65 66.04 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2e89ece6-44cc-4802-b555-89c1dfc4022f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 131.0737 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "BOTON-A"
 		(shape input)
 		(at 120.65 50.8 0)
@@ -5990,22 +6034,22 @@
 	)
 	(global_label "BOTON-B"
 		(shape input)
-		(at 82.55 76.2 180)
+		(at 120.65 55.88 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "37d173b2-ba84-4484-ad47-37ea7738601c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 70.4933 76.2 0)
+			(at 132.7067 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -6056,22 +6100,22 @@
 	)
 	(global_label "BUZZER"
 		(shape input)
-		(at 120.65 55.88 0)
+		(at 82.55 76.2 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "4d8a6dbb-907c-4cfa-ba08-281a6b5e9c79")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 131.0737 55.88 0)
+			(at 72.1263 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -6188,7 +6232,7 @@
 	)
 	(global_label "LED-B1"
 		(shape input)
-		(at 82.55 66.04 180)
+		(at 82.55 71.12 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6198,7 +6242,7 @@
 		)
 		(uuid "7c0282a1-957d-4fb3-98f7-3b6983437bc5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 72.0658 66.04 0)
+			(at 72.0658 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6296,28 +6340,6 @@
 			)
 		)
 	)
-	(global_label "RELE-B"
-		(shape input)
-		(at 120.65 73.66 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "9ba01e10-7e42-4972-91a5-2a8ceb8e9cc0")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 131.0737 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "BOTON-B"
 		(shape input)
 		(at 153.924 87.63 180)
@@ -6358,28 +6380,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "LED-A1"
-		(shape input)
-		(at 82.55 71.12 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "b3527cd7-30f6-493e-a539-e310ba6a083f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 72.2472 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -6450,31 +6450,9 @@
 			)
 		)
 	)
-	(global_label "RELE-A"
-		(shape input)
-		(at 120.65 66.04 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "eca04338-c5d0-4697-bb86-17c16bd9f892")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 130.8923 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "PUERTA"
 		(shape input)
-		(at 82.55 73.66 180)
+		(at 82.55 53.34 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6484,7 +6462,7 @@
 		)
 		(uuid "f31cce53-ed19-4b10-895d-43b8a58ff3a7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 72.4891 73.66 0)
+			(at 72.4891 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6496,7 +6474,7 @@
 	)
 	(global_label "LED-B2"
 		(shape input)
-		(at 82.55 53.34 180)
+		(at 82.55 73.66 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6506,7 +6484,7 @@
 		)
 		(uuid "f48d1649-610f-4d87-9875-b9935a667c08")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 72.0658 53.34 0)
+			(at 72.0658 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6534,6 +6512,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RELE-A"
+		(shape input)
+		(at 120.65 73.66 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f62d6b7f-4190-4fd5-9941-f59ad376a48b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 130.8923 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
