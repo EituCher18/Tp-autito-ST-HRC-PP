@@ -5900,6 +5900,28 @@
 			)
 		)
 	)
+	(global_label "BOTON-A"
+		(shape input)
+		(at 120.65 60.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1e8d48e2-d1ad-478c-96fd-8e03f749e572")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 132.5253 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "PUERTA"
 		(shape input)
 		(at 191.77 114.3 180)
@@ -5988,28 +6010,6 @@
 			)
 		)
 	)
-	(global_label "BOTON-A"
-		(shape input)
-		(at 120.65 50.8 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "2ed2fac9-09ce-456a-97f9-28e17db6d26f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.5253 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "SDA"
 		(shape input)
 		(at 120.65 45.72 0)
@@ -6034,7 +6034,7 @@
 	)
 	(global_label "BOTON-B"
 		(shape input)
-		(at 120.65 55.88 0)
+		(at 120.65 63.5 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6044,7 +6044,7 @@
 		)
 		(uuid "37d173b2-ba84-4484-ad47-37ea7738601c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.7067 55.88 0)
+			(at 132.7067 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6362,6 +6362,28 @@
 			)
 		)
 	)
+	(global_label "PUERTA"
+		(shape input)
+		(at 120.65 55.88 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a6468e89-c746-4e04-a7cf-a49f15aac1d9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 130.7109 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "SCL"
 		(shape input)
 		(at 120.65 48.26 0)
@@ -6441,28 +6463,6 @@
 		(uuid "eaeded73-3033-445b-910a-f4c4c56feefc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 72.2472 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "PUERTA"
-		(shape input)
-		(at 82.55 53.34 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f31cce53-ed19-4b10-895d-43b8a58ff3a7")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 72.4891 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
