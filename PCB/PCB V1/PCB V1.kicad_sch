@@ -4430,12 +4430,6 @@
 		(uuid "4581e035-f658-465d-860d-577df329e309")
 	)
 	(junction
-		(at 163.83 105.41)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4848cb3a-463f-4db7-83e0-1c2dcb8181c1")
-	)
-	(junction
 		(at 265.43 65.0001)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4446,6 +4440,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "62823a4d-c02e-4788-a34a-619508f802c1")
+	)
+	(junction
+		(at 163.83 105.41)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "66709f5b-0665-4b80-a86e-450946187454")
 	)
 	(junction
 		(at 254 80.01)
@@ -5358,6 +5358,16 @@
 			(type default)
 		)
 		(uuid "bf934662-703f-415f-8361-d816d99356c3")
+	)
+	(wire
+		(pts
+			(xy 156.21 105.41) (xy 163.83 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bffffabb-2a5f-4f53-9012-c6f8c7d53362")
 	)
 	(wire
 		(pts
@@ -12127,91 +12137,6 @@
 			(project "PCB V1"
 				(path "/9d3c0d60-bbc5-4e33-843b-0a3b234644e7"
 					(reference "GND1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Diode:1N4007")
-		(at 160.02 105.41 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e11f3ee0-99d2-4da5-b09f-3f45e394effd")
-		(property "Reference" "D10"
-			(at 160.528 107.696 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1N4007"
-			(at 160.528 109.474 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
-			(at 160.02 100.965 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.vishay.com/docs/88503/1n4001.pdf"
-			(at 160.02 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "1000V 1A General Purpose Rectifier Diode, DO-41"
-			(at 160.02 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 160.02 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 160.02 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "8c2a98e2-e4f4-4cb2-b7a0-1bf6301f30ef")
-		)
-		(pin "1"
-			(uuid "cba63515-8fe3-42e8-8a5a-9758e3d004a3")
-		)
-		(instances
-			(project "PCB V1"
-				(path "/9d3c0d60-bbc5-4e33-843b-0a3b234644e7"
-					(reference "D10")
 					(unit 1)
 				)
 			)
