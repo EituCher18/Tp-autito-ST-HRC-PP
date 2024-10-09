@@ -5737,7 +5737,7 @@
 		)
 		(uuid "24616b1b-4aea-4052-9b1c-807b3e31d29d")
 	)
-	(text_box "DISPLAY IDC"
+	(text_box "DISPLAY LCD"
 		(exclude_from_sim no)
 		(at 180.34 20.32 0)
 		(size 31.75 16.51)
@@ -6666,7 +6666,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "560"
+		(property "Value" "22K"
 			(at 238.76 107.95 0)
 			(effects
 				(font
@@ -6802,7 +6802,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1.6"
+		(property "Value" "68"
 			(at 48.2601 77.47 90)
 			(effects
 				(font
@@ -7497,7 +7497,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1.6"
+		(property "Value" "68"
 			(at 43.1801 55.88 90)
 			(effects
 				(font
@@ -8327,24 +8327,23 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "5e52adf0-01bc-45a8-9ff5-f9a17ac7eece")
 		(property "Reference" "R13"
-			(at 191.516 109.2199 0)
+			(at 196.85 109.2199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "R_US"
-			(at 191.516 111.7599 0)
+		(property "Value" "10K"
+			(at 191.77 108.712 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
@@ -8895,7 +8894,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_US"
+		(property "Value" "68"
 			(at 43.1801 63.5 90)
 			(effects
 				(font
@@ -10957,7 +10956,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R_US"
+		(property "Value" "68"
 			(at 48.2601 85.09 90)
 			(effects
 				(font
@@ -12769,7 +12768,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "330"
+		(property "Value" "10K"
 			(at 252.73 96.52 0)
 			(effects
 				(font
