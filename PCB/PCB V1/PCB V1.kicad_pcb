@@ -3906,13 +3906,24 @@
 		)
 		(model "${KICAD8_3DMODEL_DIR}/TerminalBlock.3dshapes/TerminalBlock_bornier-3_P5.08mm.wrl"
 			(offset
-				(xyz 5.079999924 0 0)
+				(xyz 5.08 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Triple.step"
+			(offset
+				(xyz 15.25 4.75 5.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
 			)
 		)
 	)
@@ -8663,6 +8674,17 @@
 			(pintype "power_out")
 			(uuid "d2386f48-5fac-495c-825f-d9a0f449670e")
 		)
+		(model "C:/Users/47698187/Downloads/ESP32-DEVKIT-V1--3DModel-STEP-269445.STEP"
+			(offset
+				(xyz 14 -24.5 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 0 0)
+			)
+		)
 	)
 	(footprint "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
 		(layer "F.Cu")
@@ -9996,6 +10018,17 @@
 		(model "${KICAD8_3DMODEL_DIR}/TerminalBlock.3dshapes/TerminalBlock_bornier-2_P5.08mm.wrl"
 			(offset
 				(xyz 2.539999962 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Doble.step"
+			(offset
+				(xyz -10.25 -4.75 4)
 			)
 			(scale
 				(xyz 1 1 1)
@@ -13891,6 +13924,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Triple.step"
+			(offset
+				(xyz 15.25 4.75 5.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
@@ -16264,6 +16308,17 @@
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+		(model "C:/Users/47698187/Downloads/USB-B-S-S-B-TH-R.stp"
+			(offset
+				(xyz 7 -1.25 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 90 180 90)
 			)
 		)
 	)
@@ -20866,6 +20921,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Doble.step"
+			(offset
+				(xyz 15.25 4.75 4.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
@@ -23753,6 +23819,17 @@
 		(model "${KICAD8_3DMODEL_DIR}/TerminalBlock.3dshapes/TerminalBlock_bornier-2_P5.08mm.wrl"
 			(offset
 				(xyz 2.539999962 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Doble.step"
+			(offset
+				(xyz -10 -4.75 5)
 			)
 			(scale
 				(xyz 1 1 1)
