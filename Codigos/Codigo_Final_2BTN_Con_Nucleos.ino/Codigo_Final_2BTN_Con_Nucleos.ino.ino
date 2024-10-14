@@ -10,20 +10,14 @@
 #include <ArduinoJson.h>
 #include <UniversalTelegramBot.h>
 #include <WiFi.h>
-#include <WiFiAP.h>
-#include <WiFiClient.h>
-#include <WiFiGeneric.h>
-#include <WiFiMulti.h>
-#include <WiFiSTA.h>
-#include <WiFiScan.h>
-#include <WiFiServer.h>
-#include <WiFiType.h>
-#include <WiFiUdp.h>
+
 
 
 //Cosas del bot de telegram
 #define BOTtoken "6687506526:AAEkl1maHGpUX0ZDzlPduXaExDywPBI5By8"
 #define CHAT_ID "1420007138"
+WiFiClientSecure client;
+UniversalTelegramBot bot(BOTtoken, client);
 //WiFi
 const char* ssid = "ORT-IoT";
 const char* password = "OrtIOTnew22$2";
@@ -738,7 +732,7 @@ void handleNewMessages(int numNewMessages) {
     }
 
     if (text == "/temperatura actual") {
-      String messageSent = "Temperatura actual: " + String(dht.readTemperature()) + "°C";
+      String messageSent = "Temperatura actual: " + String(myAHT10.readTemperature()) + "°C";
       bot.sendMessage(chat_id, messageSent);
     }
   }
