@@ -8328,7 +8328,7 @@
 		(dnp no)
 		(uuid "5e52adf0-01bc-45a8-9ff5-f9a17ac7eece")
 		(property "Reference" "R13"
-			(at 196.85 109.2199 0)
+			(at 189.9957 108.6751 90)
 			(effects
 				(font
 					(size 1.27 1.27)

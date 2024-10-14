@@ -8678,7 +8678,7 @@
 		)
 		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Microcontroladores/ESP/ESP32/ESP32-DEVKIT-V1--3DModel-STEP-269445.STEP"
 			(offset
-				(xyz 14 -24.5 0)
+				(xyz 14 -24.5 3.5)
 			)
 			(scale
 				(xyz 1 1 1)
