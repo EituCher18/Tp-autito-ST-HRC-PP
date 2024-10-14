@@ -14,8 +14,8 @@
 
 
 //Cosas del bot de telegram
-#define BOTtoken "6687506526:AAEkl1maHGpUX0ZDzlPduXaExDywPBI5By8"
-#define CHAT_ID "1420007138"
+#define BOTtoken "  "
+#define CHAT_ID "   "
 WiFiClientSecure client;
 UniversalTelegramBot bot(BOTtoken, client);
 //WiFi
@@ -60,6 +60,8 @@ uint8_t Puerta;
 uint8_t Intervalo;
 uint8_t Intervalo_Corto;
 uint8_t Maquina_Buzzer;
+uint8_t Verifi_Puerta = 0;
+uint8_t Verifi_Luz = 0;
 enum Estados {
   INIT_HUMEDAD,
   INIT_TEMPERATURA,
@@ -97,6 +99,7 @@ enum Door {
 TaskHandle_t Core0Task;
 TaskHandle_t Core1Task;
 
+/*
 void setupLibrerias();
 
 void Baliza();
@@ -116,13 +119,110 @@ void pines();
 void Buzzer_Maquina();
 
 void Setup_Nucleos();
+*/
+void Venti() {
+  if (Ventilador == 1) {
+    digitalWrite(Cooler, HIGH);
+  }
+  if (Ventilador == 0) {
+    digitalWrite(Cooler, LOW);
+  }
+}
+void S_Luz() {
+  if (analogRead(LDR) >= Umb_Lum) {
+    digitalWrite(Led_B1, HIGH);
+    digitalWrite(Led_B2, HIGH);
+  }
+  if (analogRead(LDR) <= Umb_Lum) {
+    digitalWrite(Led_B1, LOW);
+    digitalWrite(Led_B2, LOW);
+  }
+}
+void SetupContadores() {
+  Ms = 0;
+  Ventilador = 0;
+  Leds = 0;
+  Ms_Baliza = 0;
+  Ms_Eeprom = 0;
+}
+void SetupEeprom() {
+  preferences.begin("my-app", false);
+  Intervalo = preferences.getInt("Intervalo_Eeprom", 30000);
+  Umb_Lum = preferences.getInt("Umb_Lum_Eeprom", 500);
+}
+void Eeprom() {
+  if (millis() - Ms_Eeprom >= Intervalo) {
+    Ms_Eeprom = millis();
+    Intervalo_Corto = Intervalo / 1000;
+    preferences.putInt("Intervalo_Eeprom", Intervalo);
+    preferences.putInt("Umb_Lum_Eeprom", Umb_Lum);
+  }
+}
+void pines() {
+  pinMode(BTN_SUM, INPUT_PULLUP);
+  pinMode(BTN_RES, INPUT_PULLUP);
+  pinMode(Led_A1, OUTPUT);
+  pinMode(Led_A2, OUTPUT);
+  pinMode(Led_B1, OUTPUT);
+  pinMode(Led_B2, OUTPUT);
+  pinMode(Sensor_Puerta, INPUT_PULLUP);
+  pinMode(Cooler, INPUT_PULLUP);
+  pinMode(LDR, INPUT);
+  pinMode(Rele, OUTPUT);
+}
+void Buzzer_Maquina() {
+  switch (Maquina_Buzzer) {
+    case Buzzer_On:
+      digitalWrite(BUZZER_PIN, HIGH);
+      if (millis() - Ms_Buzzer >= 1000) {
+        Ms_Buzzer = millis();
+        Maquina_Buzzer = Buzzer_Off;
+      }
+      break;
+    case Buzzer_Off:
+      digitalWrite(BUZZER_PIN, LOW);
+      if (millis() - Ms_Buzzer >= 1000) {
+        Ms_Buzzer = millis();
+        Maquina_Buzzer = Buzzer_On;
+      }
+      break;
+  }
+}
+void Setup_Nucleos() {
+  xTaskCreatePinnedToCore(
+    codeForCore0Task,
+    "Core 0 task",
+    10000,
+    NULL,
+    1,
+    &Core0Task,
+    0);
+  xTaskCreatePinnedToCore(
+    codeForCore1Task,
+    "Core 1 task",
+    10000,
+    NULL,
+    1,
+    &Core1Task,
+    1);
+}
+void setupLibrerias() {
+  // Inicializa la comunicación I2C
+  Wire.begin();
 
+  // Inicializa el LCD
+  lcd.init();
 
+  // Enciende la retroiluminación del LCD
+  lcd.backlight();
 
-
-
-
-// falta agregar el tema del buzzer
+  Serial.println("AHT10");  // Se imprime el nombre de sensor
+  if (!myAHT10.begin()) {   // Si la comunicación con el sensor falla se imprime el un mensaje de error
+    Serial.println("Error no se el sensor!");
+    while (1)
+      ;
+  }
+}
 void setup() {
   // put your setup code here, to run once:
   setupLibrerias();
@@ -133,12 +233,8 @@ void setup() {
   Maquina = INIT_HUMEDAD;
   Maquina_Baliza = On;
 }
-
 void loop() {
 }
-
-
-
 void codeForCore0Task(void* parameter) {
   for (;;) {
     Eeprom();
@@ -564,9 +660,9 @@ void codeForCore0Task(void* parameter) {
   }
 }
 void codeForCore1Task(void* parameter) {
-  int numNewMessages;
-  int stateMessage = 0;
-  int Bot_lasttime;
+  uint8_t numNewMessages;
+  uint8_t stateMessage = 0;
+  uint8_t Bot_lasttime;
   for (;;) {
     if (millis() > Bot_lasttime + 1000) {
       numNewMessages = bot.getUpdates(bot.last_message_received + 1);
@@ -580,144 +676,6 @@ void codeForCore1Task(void* parameter) {
   }
 }
 
-
-void setupLibrerias() {
-  // Inicializa la comunicación I2C
-  Wire.begin();
-
-  // Inicializa el LCD
-  lcd.init();
-
-  // Enciende la retroiluminación del LCD
-  lcd.backlight();
-
-  Serial.println("AHT10");  // Se imprime el nombre de sensor
-  if (!myAHT10.begin()) {   // Si la comunicación con el sensor falla se imprime el un mensaje de error
-    Serial.println("Error no se el sensor!");
-    while (1)
-      ;
-  }
-}
-void Baliza() {
-
-  if (Leds = 0) {
-    digitalWrite(Led_A1, LOW);
-    digitalWrite(Led_A2, LOW);
-  }
-
-  if (Leds = 1) {
-    switch (Maquina_Baliza) {
-      case On:
-        digitalWrite(Led_A1, HIGH);
-        digitalWrite(Led_A2, HIGH);
-
-        if (millis() - Ms_Baliza >= 1000) {
-          Maquina_Baliza = Off;
-          Ms_Baliza = millis();
-        }
-        break;
-
-      case Off:
-        digitalWrite(Led_A1, LOW);
-        digitalWrite(Led_A2, LOW);
-        if (millis() - Ms_Baliza >= 1000) {
-          Maquina_Baliza = On;
-          Ms_Baliza = millis();
-        }
-        break;
-    }
-  }
-}
-void Venti() {
-  if (Ventilador = 1) {
-    digitalWrite(Cooler, HIGH);
-  }
-  if (Ventilador = 0) {
-    digitalWrite(Cooler, LOW);
-  }
-}
-void S_Luz() {
-  if (analogRead(LDR) >= Umb_Lum) {
-    digitalWrite(Led_B1, HIGH);
-    digitalWrite(Led_B2, HIGH);
-  }
-  if (analogRead(LDR) <= Umb_Lum) {
-    digitalWrite(Led_B1, LOW);
-    digitalWrite(Led_B2, LOW);
-  }
-}
-void SetupContadores() {
-  Ms = 0;
-  Ventilador = 0;
-  Leds = 0;
-  Ms_Baliza = 0;
-  Ms_Eeprom = 0;
-}
-void SetupEeprom() {
-  preferences.begin("my-app", false);
-  Intervalo = preferences.getInt("Intervalo_Eeprom", 30000);
-  Umb_Lum = preferences.getInt("Umb_Lum_Eeprom", 500);
-}
-void Eeprom() {
-  if (millis() - Ms_Eeprom >= Intervalo) {
-    Ms_Eeprom = millis();
-    Intervalo_Corto = Intervalo / 1000;
-    preferences.putInt("Intervalo_Eeprom", Intervalo);
-    preferences.putInt("Umb_Lum_Eeprom", Umb_Lum);
-  }
-}
-void pines() {
-  pinMode(BTN_SUM, INPUT_PULLUP);
-  pinMode(BTN_RES, INPUT_PULLUP);
-  pinMode(Led_A1, OUTPUT);
-  pinMode(Led_A2, OUTPUT);
-  pinMode(Led_B1, OUTPUT);
-  pinMode(Led_B2, OUTPUT);
-  pinMode(Sensor_Puerta, INPUT_PULLUP);
-  pinMode(Cooler, INPUT_PULLUP);
-  pinMode(LDR, INPUT);
-  pinMode(Rele, OUTPUT);
-}
-void Buzzer_Maquina() {
-  switch (Maquina_Buzzer) {
-    case Buzzer_On:
-      digitalWrite(BUZZER_PIN, HIGH);
-      if (millis() - Ms_Buzzer >= 1000) {
-        Ms_Buzzer = millis();
-        Maquina_Buzzer = Buzzer_Off;
-      }
-      break;
-    case Buzzer_Off:
-      digitalWrite(BUZZER_PIN, LOW);
-      if (millis() - Ms_Buzzer >= 1000) {
-        Ms_Buzzer = millis();
-        Maquina_Buzzer = Buzzer_On;
-      }
-      break;
-  }
-}
-
-void Setup_Nucleos() {
-  xTaskCreatePinnedToCore(
-    codeForCore0Task,
-    "Core 0 task",
-    10000,
-    NULL,
-    1,
-    &Core0Task,
-    0);
-  xTaskCreatePinnedToCore(
-    codeForCore1Task,
-    "Core 1 task",
-    10000,
-    NULL,
-    1,
-    &Core1Task,
-    1);
-}
-
-
-
 void handleNewMessages(int numNewMessages) {
   String text = "";
   for (int i = 0; i < numNewMessages; i++) {
@@ -727,13 +685,73 @@ void handleNewMessages(int numNewMessages) {
     String from_name = bot.messages[i].from_name;
     if (from_name == "") from_name = "Guest";
 
-    if (text == "/stef") {
-      bot.sendMessage(chat_id, "Hola Stef!");
+    if (text == "/Esta_Prendido?") {
+      bot.sendMessage(chat_id, "Si  https://youtu.be/xvFZjo5PgG0");
     }
 
-    if (text == "/temperatura actual") {
-      String messageSent = "Temperatura actual: " + String(myAHT10.readTemperature()) + "°C";
-      bot.sendMessage(chat_id, messageSent);
+    if (text == "/Temperatura_actual") {
+      String Mesagge_Temp = "Temperatura actual: " + String(myAHT10.readTemperature()) + "°C";
+      bot.sendMessage(chat_id, Mesagge_Temp);
+    }
+    if (text == "/Humedad_actual") {
+      String Mesagge_Hum = "La Humdad actual: " + String(myAHT10.readHumidity()) + " %";
+    }
+
+    if (text == "/La_baliza_esta_prendida?") {
+      if (Leds == 1) {
+        bot.sendMessage(chat_id, "La baliza esta prendida.");
+      } else {
+        bot.sendMessage(chat_id, "La baliza esta apagada.");
+      }
+    }
+    if (text == "/Encender_baliza") {
+      Leds = 1;
+      bot.sendMessage(chat_id, "Se encendio la baliza");
+    }
+    if (text == "/Apagar_baliza") {
+      Leds = 0;
+      bot.sendMessage(chat_id, "Se apago la baliza");
+    }
+    if (Maquina == Door && Verifi_Puerta == 0) {
+      bot.sendMessage(chat_id, "Se abrio la puerta");
+      Verifi_Puerta = 1;
+    }
+    if (Maquina != Door && Verifi_Puerta == 1) {
+      bot.sendMessage(chat_id, "Se cerro la puerta");
+      Verifi_Puerta = 0;
+    }
+    if (analogRead(LDR) >= Umb_Lum && Verifi_Luz == 0) {
+      bot.sendMessage(chat_id, "Se encendieron las luces de iluminacion");
+      Verifi_Luz = 1;
+    } else {
+      Verifi_Luz = 0;
     }
   }
-}
+  void Baliza() {
+    if (Leds == 0) {
+      digitalWrite(Led_A1, LOW);
+      digitalWrite(Led_A2, LOW);
+    }
+    if (Leds == 1) {
+      switch (Maquina_Baliza) {
+        case On:
+          digitalWrite(Led_A1, HIGH);
+          digitalWrite(Led_A2, HIGH);
+
+          if (millis() - Ms_Baliza >= 1000) {
+            Maquina_Baliza = Off;
+            Ms_Baliza = millis();
+          }
+          break;
+
+        case Off:
+          digitalWrite(Led_A1, LOW);
+          digitalWrite(Led_A2, LOW);
+          if (millis() - Ms_Baliza >= 1000) {
+            Maquina_Baliza = On;
+            Ms_Baliza = millis();
+          }
+          break;
+      }
+    }
+  }
