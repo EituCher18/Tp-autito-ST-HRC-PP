@@ -7013,7 +7013,7 @@
 				)
 			)
 		)
-		(property "Value" "100"
+		(property "Value" "68"
 			(at 31.75 115.57 0)
 			(effects
 				(font
@@ -7074,15 +7074,14 @@
 		(dnp no)
 		(uuid "27e5f33d-6053-48f8-ac33-93a5e7e8ed50")
 		(property "Reference" "R7"
-			(at 95.25 115.57 90)
+			(at 85.09 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(hide yes)
 			)
 		)
-		(property "Value" "100"
+		(property "Value" "68"
 			(at 83.82 115.57 0)
 			(effects
 				(font
@@ -8329,7 +8328,7 @@
 		(dnp no)
 		(uuid "5e52adf0-01bc-45a8-9ff5-f9a17ac7eece")
 		(property "Reference" "R13"
-			(at 196.85 109.2199 0)
+			(at 189.9957 108.6751 90)
 			(effects
 				(font
 					(size 1.27 1.27)

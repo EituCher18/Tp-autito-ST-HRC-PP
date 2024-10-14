@@ -154,7 +154,7 @@
 				)
 			)
 		)
-		(property "Value" "R_US"
+		(property "Value" "68"
 			(at 5.08 2.37 90)
 			(layer "F.Fab")
 			(uuid "6a7acc06-028d-4745-bac4-99d44467b31c")
@@ -837,7 +837,7 @@
 				)
 			)
 		)
-		(property "Value" "330"
+		(property "Value" "10K"
 			(at 5.08 2.37 0)
 			(layer "F.Fab")
 			(uuid "743919ea-7ad1-4b6d-bf1e-fa0a000bfdb8")
@@ -1602,7 +1602,7 @@
 				)
 			)
 		)
-		(property "Value" "100"
+		(property "Value" "68"
 			(at 5.08 2.37 90)
 			(layer "F.Fab")
 			(uuid "5fc7c0c6-9bf9-4e1f-a439-6ac74935fe82")
@@ -3906,13 +3906,24 @@
 		)
 		(model "${KICAD8_3DMODEL_DIR}/TerminalBlock.3dshapes/TerminalBlock_bornier-3_P5.08mm.wrl"
 			(offset
-				(xyz 5.079999924 0 0)
+				(xyz 5.08 0 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Triple.step"
+			(offset
+				(xyz 15.25 4.75 5.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
 			)
 		)
 	)
@@ -7947,6 +7958,8 @@
 			)
 		)
 		(path "/cf9507ee-e7e0-431b-aac9-93a3c2e7f3b2")
+		(sheetname "Raíz")
+		(sheetfile "PCB V1.kicad_sch")
 		(attr through_hole)
 		(fp_line
 			(start 1.27 50.8)
@@ -8662,6 +8675,17 @@
 			(pinfunction "3v3")
 			(pintype "power_out")
 			(uuid "d2386f48-5fac-495c-825f-d9a0f449670e")
+		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Microcontroladores/ESP/ESP32/ESP32-DEVKIT-V1--3DModel-STEP-269445.STEP"
+			(offset
+				(xyz 14 -24.5 3.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 0 0)
+			)
 		)
 	)
 	(footprint "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
@@ -9996,6 +10020,17 @@
 		(model "${KICAD8_3DMODEL_DIR}/TerminalBlock.3dshapes/TerminalBlock_bornier-2_P5.08mm.wrl"
 			(offset
 				(xyz 2.539999962 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Doble.step"
+			(offset
+				(xyz -10.25 -4.75 4)
 			)
 			(scale
 				(xyz 1 1 1)
@@ -13366,7 +13401,7 @@
 				)
 			)
 		)
-		(property "Value" "R_US"
+		(property "Value" "68"
 			(at 5.08 2.37 90)
 			(layer "F.Fab")
 			(uuid "7353c5a1-e7dc-4329-83e8-d5c2153fcc65")
@@ -13891,6 +13926,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Triple.step"
+			(offset
+				(xyz 15.25 4.75 5.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
@@ -13909,7 +13955,7 @@
 				)
 			)
 		)
-		(property "Value" "1.6"
+		(property "Value" "68"
 			(at 5.08 2.37 90)
 			(layer "F.Fab")
 			(uuid "6ae5e620-d588-4c61-9a5d-9880610e75f6")
@@ -16266,6 +16312,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Conectores/USB/USB-B-S-S-B-TH-R.stp"
+			(offset
+				(xyz 7 -1.25 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 90 180 90)
+			)
+		)
 	)
 	(footprint "Connector_Molex:Molex_KK-254_AE-6410-02A_1x02_P2.54mm_Vertical"
 		(layer "F.Cu")
@@ -16692,7 +16749,7 @@
 				)
 			)
 		)
-		(property "Value" "100"
+		(property "Value" "68"
 			(at 5.08 2.37 90)
 			(layer "F.Fab")
 			(uuid "2293e24a-3740-41dc-b242-0057091d5131")
@@ -19846,7 +19903,7 @@
 				)
 			)
 		)
-		(property "Value" "1.6"
+		(property "Value" "68"
 			(at 5.08 2.37 90)
 			(layer "F.Fab")
 			(uuid "ab199c6b-de87-4066-92af-cf16443e3e2b")
@@ -20866,6 +20923,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Doble.step"
+			(offset
+				(xyz 15.25 4.75 4.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 180)
+			)
+		)
 	)
 	(footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 		(layer "F.Cu")
@@ -20884,7 +20952,7 @@
 				)
 			)
 		)
-		(property "Value" "R_US"
+		(property "Value" "10K"
 			(at 5.08 2.37 180)
 			(layer "F.Fab")
 			(uuid "8e55ff88-8f0f-432a-859c-ca6b5d7a9a92")
@@ -21159,7 +21227,7 @@
 				)
 			)
 		)
-		(property "Value" "560"
+		(property "Value" "22K"
 			(at 5.08 2.37 0)
 			(layer "F.Fab")
 			(uuid "7dc78bf3-02b3-4e53-9e63-596dd9a95263")
@@ -23753,6 +23821,17 @@
 		(model "${KICAD8_3DMODEL_DIR}/TerminalBlock.3dshapes/TerminalBlock_bornier-2_P5.08mm.wrl"
 			(offset
 				(xyz 2.539999962 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "C:/Users/47698187/Documents/GitHub/Modelos-3D/Borneras - Conectores/Azules/Doble.step"
+			(offset
+				(xyz -10 -4.75 5)
 			)
 			(scale
 				(xyz 1 1 1)
