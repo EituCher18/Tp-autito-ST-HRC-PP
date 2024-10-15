@@ -99,7 +99,7 @@ enum Door {
 TaskHandle_t Core0Task;
 TaskHandle_t Core1Task;
 
-/*
+
 void setupLibrerias();
 
 void Baliza();
@@ -119,7 +119,8 @@ void pines();
 void Buzzer_Maquina();
 
 void Setup_Nucleos();
-*/
+
+
 void Venti() {
   if (Ventilador == 1) {
     digitalWrite(Cooler, HIGH);
@@ -178,6 +179,7 @@ void Buzzer_Maquina() {
         Ms_Buzzer = millis();
         Maquina_Buzzer = Buzzer_Off;
       }
+
       break;
     case Buzzer_Off:
       digitalWrite(BUZZER_PIN, LOW);
@@ -712,6 +714,18 @@ void handleNewMessages(int numNewMessages) {
       Leds = 0;
       bot.sendMessage(chat_id, "Se apago la baliza");
     }
+    if (text == "/umbral") {
+      i++;
+      text = bot.messages[i].text;
+      Umb_Lum = text.toInt();
+    }
+    if(text == "/ventilador"){
+      Ventilador = !Ventilador;
+    }
+    if(text == "/buzzer"){
+
+      }
+    }
     if (Maquina == Door && Verifi_Puerta == 0) {
       bot.sendMessage(chat_id, "Se abrio la puerta");
       Verifi_Puerta = 1;
@@ -723,35 +737,37 @@ void handleNewMessages(int numNewMessages) {
     if (analogRead(LDR) >= Umb_Lum && Verifi_Luz == 0) {
       bot.sendMessage(chat_id, "Se encendieron las luces de iluminacion");
       Verifi_Luz = 1;
-    } else {
+    } else {  //seguro?
       Verifi_Luz = 0;
     }
   }
-  void Baliza() {
-    if (Leds == 0) {
-      digitalWrite(Led_A1, LOW);
-      digitalWrite(Led_A2, LOW);
-    }
-    if (Leds == 1) {
-      switch (Maquina_Baliza) {
-        case On:
-          digitalWrite(Led_A1, HIGH);
-          digitalWrite(Led_A2, HIGH);
+}
 
-          if (millis() - Ms_Baliza >= 1000) {
-            Maquina_Baliza = Off;
-            Ms_Baliza = millis();
-          }
-          break;
+void Baliza() {
+  if (Leds == 0) {
+    digitalWrite(Led_A1, LOW);
+    digitalWrite(Led_A2, LOW);
+  }
+  if (Leds == 1) {
+    switch (Maquina_Baliza) {
+      case On:
+        digitalWrite(Led_A1, HIGH);
+        digitalWrite(Led_A2, HIGH);
 
-        case Off:
-          digitalWrite(Led_A1, LOW);
-          digitalWrite(Led_A2, LOW);
-          if (millis() - Ms_Baliza >= 1000) {
-            Maquina_Baliza = On;
-            Ms_Baliza = millis();
-          }
-          break;
-      }
+        if (millis() - Ms_Baliza >= 1000) {
+          Maquina_Baliza = Off;
+          Ms_Baliza = millis();
+        }
+        break;
+
+      case Off:
+        digitalWrite(Led_A1, LOW);
+        digitalWrite(Led_A2, LOW);
+        if (millis() - Ms_Baliza >= 1000) {
+          Maquina_Baliza = On;
+          Ms_Baliza = millis();
+        }
+        break;
     }
   }
+}
