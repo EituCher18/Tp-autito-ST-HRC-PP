@@ -719,13 +719,12 @@ void handleNewMessages(int numNewMessages) {
       text = bot.messages[i].text;
       Umb_Lum = text.toInt();
     }
-    if(text == "/ventilador"){
+    if (text == "/ventilador") {
       Ventilador = !Ventilador;
     }
-    if(text == "/buzzer"){
-
-      }
+    if (text == "/buzzer") {
     }
+
     if (Maquina == Door && Verifi_Puerta == 0) {
       bot.sendMessage(chat_id, "Se abrio la puerta");
       Verifi_Puerta = 1;
