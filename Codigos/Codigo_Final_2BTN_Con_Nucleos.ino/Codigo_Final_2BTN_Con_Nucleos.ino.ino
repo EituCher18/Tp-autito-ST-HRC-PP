@@ -175,7 +175,7 @@ void Buzzer_Maquina() {
   switch (Maquina_Buzzer) {
     case Buzzer_On:
       digitalWrite(BUZZER_PIN, HIGH);
-      if (millis() - Ms_Buzzer >= 1000) {
+      if (millis() - Ms_Buzzer >= 20000) {
         Ms_Buzzer = millis();
         Maquina_Buzzer = Buzzer_Off;
       }
@@ -183,7 +183,7 @@ void Buzzer_Maquina() {
       break;
     case Buzzer_Off:
       digitalWrite(BUZZER_PIN, LOW);
-      if (millis() - Ms_Buzzer >= 1000) {
+      if (millis() - Ms_Buzzer >= 20000) {
         Ms_Buzzer = millis();
         Maquina_Buzzer = Buzzer_On;
       }
@@ -723,6 +723,15 @@ void handleNewMessages(int numNewMessages) {
       Ventilador = !Ventilador;
     }
     if (text == "/buzzer") {
+      if (Maquina_Buzzer == Buzzer_On) {
+        Maquina_Buzzer = Buzzer_Off;
+        digitalWrite(BUZZER_PIN, LOW);
+        Ms_Buzzer = millis();
+      } else {
+        Maquina_Buzzer = Buzzer_On;
+        digitalWrite(BUZZER_PIN, HIGH);
+        Ms_Buzzer = millis();
+      }
     }
 
     if (Maquina == Door && Verifi_Puerta == 0) {
@@ -736,7 +745,8 @@ void handleNewMessages(int numNewMessages) {
     if (analogRead(LDR) >= Umb_Lum && Verifi_Luz == 0) {
       bot.sendMessage(chat_id, "Se encendieron las luces de iluminacion");
       Verifi_Luz = 1;
-    } else {  //seguro?
+    }
+    if(analogRead(LDR) < Umb_Lum) {
       Verifi_Luz = 0;
     }
   }
