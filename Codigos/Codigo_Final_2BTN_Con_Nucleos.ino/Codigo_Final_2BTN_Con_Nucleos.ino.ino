@@ -33,17 +33,17 @@ unsigned long Ms_Buzzer;
 
 
 //Pines
-#define BTN_SUM 12
-#define BTN_RES 12
-#define Led_A1 12
-#define Led_A2 12
-#define Led_B1 12
-#define Led_B2 12
-#define LDR 12
-#define Rele 12
-#define Cooler 12
-#define BUZZER_PIN 12
-#define Sensor_Puerta 12
+#define BTN_SUM 10
+#define BTN_RES 9
+#define Led_A1 25
+#define Led_A2 23
+#define Led_B1 24
+#define Led_B2 22
+#define LDR 11
+#define Rele 13
+#define Cooler 12 //falta
+#define BUZZER_PIN 21
+#define Sensor_Puerta 7
 // AHT10
 AHT10 myAHT10(0x38);
 
