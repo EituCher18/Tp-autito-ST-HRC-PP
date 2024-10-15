@@ -1,5 +1,3 @@
-// Falta agregar que te envie las lecturas con el bot de telegram y que se puedan modificar
-
 //Grupo 8 Eitan Cherniak, Uriel Digestani, Aaron Yabra
 #include "Arduino.h"
 #include <Wire.h>
