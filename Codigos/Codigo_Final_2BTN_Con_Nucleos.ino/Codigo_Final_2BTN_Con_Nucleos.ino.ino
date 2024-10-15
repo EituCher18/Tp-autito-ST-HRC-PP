@@ -22,7 +22,7 @@ const char* password = "OrtIOTnew22$2";
 
 
 Preferences preferences;
-//Variables de tiempo
+///Variables de tiempo
 unsigned long Ms;
 unsigned long Ms_Baliza;
 unsigned long Ms_Eeprom;
@@ -30,7 +30,7 @@ unsigned long Ms_Buzzer;
 
 
 
-//Pines
+///Pines
 #define BTN_SUM 10
 #define BTN_RES 9
 #define Led_A1 25
@@ -39,13 +39,15 @@ unsigned long Ms_Buzzer;
 #define Led_B2 22
 #define LDR 11
 #define Rele 13
-#define Cooler 12 //falta
+#define Cooler 12
 #define BUZZER_PIN 21
 #define Sensor_Puerta 7
+
+
 // AHT10
 AHT10 myAHT10(0x38);
 
-// LCD
+/// LCD
 uint8_t lcdAddress = 0x27;
 LiquidCrystal_I2C lcd(lcdAddress, 16, 2);
 
@@ -90,7 +92,6 @@ enum Baliza {
 enum Door {
   Buzzer_On,
   Buzzer_Off
-
 };
 
 // Nucleos
@@ -117,6 +118,13 @@ void pines();
 void Buzzer_Maquina();
 
 void Setup_Nucleos();
+
+void codeForCore0Task(void* parameter);
+
+void codeForCore1Task(void* parameter);
+
+void handleNewMessages(int numNewMessages);
+
 
 
 void Venti() {
@@ -695,6 +703,7 @@ void handleNewMessages(int numNewMessages) {
     }
     if (text == "/Humedad_actual") {
       String Mesagge_Hum = "La Humdad actual: " + String(myAHT10.readHumidity()) + " %";
+      bot.sendMessage(chat_id, Mesagge_Hum);
     }
 
     if (text == "/La_baliza_esta_prendida?") {
@@ -744,7 +753,7 @@ void handleNewMessages(int numNewMessages) {
       bot.sendMessage(chat_id, "Se encendieron las luces de iluminacion");
       Verifi_Luz = 1;
     }
-    if(analogRead(LDR) < Umb_Lum) {
+    if (analogRead(LDR) < Umb_Lum) {
       Verifi_Luz = 0;
     }
   }
