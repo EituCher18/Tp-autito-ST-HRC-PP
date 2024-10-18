@@ -16,9 +16,11 @@
 #define CHAT_ID "   "
 WiFiClientSecure client;
 UniversalTelegramBot bot(BOTtoken, client);
-//WiFi
-const char* ssid = "ORT-IoT";
-const char* password = "OrtIOTnew22$2";
+
+
+///WiFi
+#define WIFI_SSID "ORT-IoT"
+#define WIFI_PASSWORD "OrtIOT24"
 
 
 Preferences preferences;
@@ -124,7 +126,7 @@ void codeForCore0Task(void* parameter);
 void codeForCore1Task(void* parameter);
 
 void handleNewMessages(int numNewMessages);
-
+void initWiFi();
 
 
 void Venti() {
@@ -233,6 +235,7 @@ void setupLibrerias() {
 }
 void setup() {
   // put your setup code here, to run once:
+  initWiFi();
   setupLibrerias();
   SetupContadores();
   SetupEeprom();
@@ -786,4 +789,18 @@ void Baliza() {
         break;
     }
   }
+}
+
+void initWiFi() {
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to WiFi ..");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print('.');
+    delay(1000);
+    lcd.setCursor(0,0);
+    lcd.print("Conectando WIFI");
+
+  }
+  Serial.println(WiFi.localIP());
+  Serial.println();
 }
