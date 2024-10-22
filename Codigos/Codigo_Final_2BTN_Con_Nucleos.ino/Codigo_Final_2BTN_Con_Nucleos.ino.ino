@@ -1,4 +1,6 @@
 //Grupo 8 Eitan Cherniak, Uriel Digestani, Aaron Yabra
+//Agregar un punto en telegram que sea /datos 
+//Agregar uno con lista de comandos
 #include "Arduino.h"
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -126,6 +128,7 @@ void codeForCore0Task(void* parameter);
 void codeForCore1Task(void* parameter);
 
 void handleNewMessages(int numNewMessages);
+
 void initWiFi();
 
 
@@ -381,15 +384,11 @@ void codeForCore0Task(void* parameter) {
           lcd.print("On");
         }
         if (Ventilador = 0) {
-
           lcd.setCursor(0, 1);
           lcd.print("Off");
         }
-
         lcd.setCursor(0, 0);
         lcd.print("Ventilador esta:");
-
-
         if (digitalRead(BTN_SUM) == LOW) {
           Maquina = Ventilador_Up;
         }
@@ -440,8 +439,6 @@ void codeForCore0Task(void* parameter) {
           lcd.clear();
         }
         break;
-
-
       case Espera_T_Eeprom:
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
@@ -454,7 +451,6 @@ void codeForCore0Task(void* parameter) {
         }
         break;
       case T_Eeprom:
-
         lcd.setCursor(0, 0);
         lcd.print("El intervalo de");
         lcd.setCursor(0, 1);
@@ -477,7 +473,6 @@ void codeForCore0Task(void* parameter) {
           lcd.clear();
           Maquina = Sub_Eeprom;
         }
-
         if (digitalRead(BTN_RES) == LOW && Intervalo >= 30000) {
           Intervalo--;
           lcd.clear();
@@ -490,7 +485,6 @@ void codeForCore0Task(void* parameter) {
           Maquina = Door;
           Puerta = Sub_Eeprom;
         }
-
         if (digitalRead(BTN_SUM) == HIGH) {
           Maquina = T_Eeprom;
           Intervalo++;
@@ -499,9 +493,7 @@ void codeForCore0Task(void* parameter) {
           Maquina = Espera_Pantalla4;
         }
         break;
-
       case Baj_Eeprom:
-
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
           Maquina = Door;
@@ -515,7 +507,6 @@ void codeForCore0Task(void* parameter) {
           Maquina = Espera_Pantalla4;
         }
         break;
-
       case Pantalla4:
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
@@ -797,9 +788,8 @@ void initWiFi() {
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print('.');
     delay(1000);
-    lcd.setCursor(0,0);
+    lcd.setCursor(0, 0);
     lcd.print("Conectando WIFI");
-
   }
   Serial.println(WiFi.localIP());
   Serial.println();
