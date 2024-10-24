@@ -9,18 +9,16 @@
 #include <UniversalTelegramBot.h>
 #include <WiFi.h>
 
+///WiFi
+#define WIFI_SSID "Los Cherni"
+#define WIFI_PASSWORD "Acoyte2021"
 
 
-//Cosas del bot de telegram
-#define BOTtoken "  "
-#define CHAT_ID "   "
+///Cosas del bot de telegram
+#define BOTtoken "7702202258:AAFp92KQO4fWHdNxIgqcqGWbvvLalIw3PSU"
+#define CHAT_ID "7702202258"
 WiFiClientSecure client;
 UniversalTelegramBot bot(BOTtoken, client);
-
-
-///WiFi
-#define WIFI_SSID "ORT-IoT"
-#define WIFI_PASSWORD "OrtIOT24"
 
 
 Preferences preferences;
@@ -29,6 +27,7 @@ unsigned long Ms;
 unsigned long Ms_Baliza;
 unsigned long Ms_Eeprom;
 unsigned long Ms_Buzzer;
+unsigned long Ms_Envio_Temperatura;
 
 
 
@@ -64,6 +63,8 @@ uint8_t Intervalo_Corto;
 uint8_t Maquina_Buzzer;
 uint8_t Verifi_Puerta = 0;
 uint8_t Verifi_Luz = 0;
+uint8_t Umb_Temp_Variable;
+uint8_t Verifi_Temp = 0;
 enum Estados {
   INIT_HUMEDAD,
   INIT_TEMPERATURA,
@@ -85,6 +86,10 @@ enum Estados {
   Sub_Eeprom,
   Baj_Eeprom,
   Luz_Baj,
+  espera_Umb_Temp,
+  Umb_Temp,
+  Umb_Temp_Res,
+  Umb_Temp_Sum
 };
 enum Baliza {
   On,
@@ -126,6 +131,7 @@ void codeForCore0Task(void* parameter);
 void codeForCore1Task(void* parameter);
 
 void handleNewMessages(int numNewMessages);
+
 void initWiFi();
 
 
@@ -153,11 +159,13 @@ void SetupContadores() {
   Leds = 0;
   Ms_Baliza = 0;
   Ms_Eeprom = 0;
+  Ms_Envio_Temperatura = 0;
 }
 void SetupEeprom() {
   preferences.begin("my-app", false);
   Intervalo = preferences.getInt("Intervalo_Eeprom", 30000);
   Umb_Lum = preferences.getInt("Umb_Lum_Eeprom", 500);
+  Umb_Temp_Variable = preferences.getInt("Umb_Temp_Variable_Eeprom", 24);
 }
 void Eeprom() {
   if (millis() - Ms_Eeprom >= Intervalo) {
@@ -165,6 +173,7 @@ void Eeprom() {
     Intervalo_Corto = Intervalo / 1000;
     preferences.putInt("Intervalo_Eeprom", Intervalo);
     preferences.putInt("Umb_Lum_Eeprom", Umb_Lum);
+    preferences.putInt("Umb_Temp_Variable_Eeprom", Umb_Temp_Variable);
   }
 }
 void pines() {
@@ -234,11 +243,12 @@ void setupLibrerias() {
   }
 }
 void setup() {
+  Serial.begin(115200);
   // put your setup code here, to run once:
   initWiFi();
-  setupLibrerias();
+  //setupLibrerias();
   SetupContadores();
-  SetupEeprom();
+  //SetupEeprom();
   pines();
   Setup_Nucleos();
   Maquina = INIT_HUMEDAD;
@@ -292,10 +302,53 @@ void codeForCore0Task(void* parameter) {
           lcd.clear();
         }
         if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
-          Maquina = Espera_Pantalla2;
+          Maquina = espera_Umb_Temp;
         }
         break;
 
+      case espera_Umb_Temp:
+        if (digitalRead(BTN_RES) == HIGH && digitalRead(BTN_SUM) == HIGH) {
+          lcd.clear();
+          Maquina = Umb_Temp;
+        }
+        break;
+
+      case Umb_Temp:
+        lcd.setCursor(0, 0);
+        lcd.print("El Umbral es:");
+        lcd.setCursor(0,1);
+        lcd.print(Umb_Temp_Variable);
+        if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
+          Maquina = Espera_Pantalla2;
+        }
+        if (digitalRead(BTN_RES) == LOW) {
+          Maquina = Umb_Temp_Res;
+        }
+        if (digitalRead(BTN_SUM) == LOW) {
+          Maquina = Umb_Temp_Sum;
+        }
+        break;
+      case Umb_Temp_Res:
+        if (digitalRead(BTN_RES) == HIGH) {
+          Maquina = Umb_Temp;
+          Umb_Temp_Variable--;
+          lcd.clear();
+        }
+        if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
+          Maquina = Espera_Pantalla2;
+        }
+        break;
+      case Umb_Temp_Sum:
+
+        if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
+          Maquina = Espera_Pantalla2;
+        }
+        if (digitalRead(BTN_SUM) == LOW) {
+          Maquina = Umb_Temp;
+          Umb_Temp_Variable++;
+          lcd.clear();
+        }
+        break;
       case Espera_Pantalla2:
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
@@ -724,7 +777,7 @@ void handleNewMessages(int numNewMessages) {
       Leds = 0;
       bot.sendMessage(chat_id, "Se apago la baliza");
     }
-    if (text == "/umbral") {
+    if (text == "/Umbral_Luz") {
       i++;
       text = bot.messages[i].text;
       Umb_Lum = text.toInt();
@@ -743,7 +796,14 @@ void handleNewMessages(int numNewMessages) {
         Ms_Buzzer = millis();
       }
     }
-
+    if (myAHT10.readTemperature() > Umb_Temp_Variable && Verifi_Temp == 0) {
+      bot.sendMessage(chat_id, "Se paso el Umbral de la Temperatura");
+      Verifi_Temp = 1;
+    }
+    if (millis() - Ms_Envio_Temperatura >= 5000 || myAHT10.readTemperature() < Umb_Temp_Variable) {
+      Verifi_Temp = 1;
+      Ms_Envio_Temperatura = millis();
+    }
     if (Maquina == Door && Verifi_Puerta == 0) {
       bot.sendMessage(chat_id, "Se abrio la puerta");
       Verifi_Puerta = 1;
@@ -797,9 +857,8 @@ void initWiFi() {
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print('.');
     delay(1000);
-    lcd.setCursor(0,0);
+    lcd.setCursor(0, 0);
     lcd.print("Conectando WIFI");
-
   }
   Serial.println(WiFi.localIP());
   Serial.println();
