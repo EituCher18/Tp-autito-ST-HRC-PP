@@ -1,4 +1,5 @@
 //Grupo 8 Eitan Cherniak, Uriel Digestani, Aaron Yabra
+//Agregar un punto en telegram que sea /datos 
 #include "Arduino.h"
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -429,20 +430,16 @@ void codeForCore0Task(void* parameter) {
           Maquina = Door;
           Puerta = Pantalla3;
         }
-        if (Ventilador = 1) {
+        if (Ventilador == 1) {
           lcd.setCursor(0, 1);
           lcd.print("On");
         }
-        if (Ventilador = 0) {
-
+        if (Ventilador == 0) {
           lcd.setCursor(0, 1);
           lcd.print("Off");
         }
-
         lcd.setCursor(0, 0);
         lcd.print("Ventilador esta:");
-
-
         if (digitalRead(BTN_SUM) == LOW) {
           Maquina = Ventilador_Up;
         }
@@ -493,8 +490,6 @@ void codeForCore0Task(void* parameter) {
           lcd.clear();
         }
         break;
-
-
       case Espera_T_Eeprom:
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
@@ -507,7 +502,6 @@ void codeForCore0Task(void* parameter) {
         }
         break;
       case T_Eeprom:
-
         lcd.setCursor(0, 0);
         lcd.print("El intervalo de");
         lcd.setCursor(0, 1);
@@ -530,9 +524,7 @@ void codeForCore0Task(void* parameter) {
           lcd.clear();
           Maquina = Sub_Eeprom;
         }
-
         if (digitalRead(BTN_RES) == LOW && Intervalo >= 30000) {
-          Intervalo--;
           lcd.clear();
           Maquina = Baj_Eeprom;
         }
@@ -543,18 +535,15 @@ void codeForCore0Task(void* parameter) {
           Maquina = Door;
           Puerta = Sub_Eeprom;
         }
-
         if (digitalRead(BTN_SUM) == HIGH) {
           Maquina = T_Eeprom;
-          Intervalo++;
+          Intervalo=Intervalo+10000;                }
         }
         if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
           Maquina = Espera_Pantalla4;
         }
         break;
-
       case Baj_Eeprom:
-
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
           Maquina = Door;
@@ -562,13 +551,12 @@ void codeForCore0Task(void* parameter) {
         }
         if (digitalRead(BTN_RES) == HIGH) {
           Maquina = T_Eeprom;
-          Intervalo--;
+          Intervalo=Intervalo - 10000;                         
         }
         if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
           Maquina = Espera_Pantalla4;
         }
         break;
-
       case Pantalla4:
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
@@ -647,12 +635,13 @@ void codeForCore0Task(void* parameter) {
         lcd.setCursor(0, 1);
         lcd.print("abierta");
         if (digitalRead(Sensor_Puerta) == LOW) {
-          if (Puerta = INIT_HUMEDAD) {
+          Maquina=Puerta;
+          /*if (Puerta = INIT_HUMEDAD) {  //porque solo un =?
             Maquina = INIT_HUMEDAD;
             lcd.clear();
           }
           if (Puerta = INIT_TEMPERATURA) {
-            Maquina = INIT_TEMPERATURA;
+            Maquina = INIT_TEMPERATURA;  //es mas facil que esto
             lcd.clear();
           }
           if (Puerta = Espera_Pantalla2) {
@@ -668,7 +657,7 @@ void codeForCore0Task(void* parameter) {
             lcd.clear();
           }
           if (Puerta = Espera_Pantalla3) {
-            Puerta = Luz_SUM;
+            Puerta = Luz_SUM;            //porque?
             lcd.clear();
           }
           if (Puerta = Pantalla3) {
@@ -719,6 +708,7 @@ void codeForCore0Task(void* parameter) {
             Maquina = Baj_Eeprom;
             lcd.clear();
           }
+          */
         }
     }
   }
@@ -749,6 +739,11 @@ void handleNewMessages(int numNewMessages) {
     String from_name = bot.messages[i].from_name;
     if (from_name == "") from_name = "Guest";
 
+
+    if(text == "/Comandos"){
+      String MensajeComandos = "/Comandos, /Esta_Prendido?, /Temperatura_actual, /Humedad_actual, /La_baliza_esta_prendida?, /Encender_baliza, /Apagar_baliza, /Umbral, /Ventilador, /Buzzer";
+    }
+
     if (text == "/Esta_Prendido?") {
       bot.sendMessage(chat_id, "Si  https://youtu.be/xvFZjo5PgG0");
     }
@@ -777,15 +772,19 @@ void handleNewMessages(int numNewMessages) {
       Leds = 0;
       bot.sendMessage(chat_id, "Se apago la baliza");
     }
+<<<<<<< HEAD
     if (text == "/Umbral_Luz") {
+=======
+    if (text == "/Umbral") {
+>>>>>>> 8c6d6b2ddb3504d65bb4246f7062c2c12be6a0e8
       i++;
       text = bot.messages[i].text;
       Umb_Lum = text.toInt();
     }
-    if (text == "/ventilador") {
+    if (text == "/Ventilador") {
       Ventilador = !Ventilador;
     }
-    if (text == "/buzzer") {
+    if (text == "/Buzzer") {
       if (Maquina_Buzzer == Buzzer_On) {
         Maquina_Buzzer = Buzzer_Off;
         digitalWrite(BUZZER_PIN, LOW);
