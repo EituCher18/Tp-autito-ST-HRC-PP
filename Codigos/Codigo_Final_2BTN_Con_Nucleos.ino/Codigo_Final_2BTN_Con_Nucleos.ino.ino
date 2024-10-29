@@ -644,7 +644,7 @@ void codeForCore0Task(void* parameter) {
         lcd.print("abierta");
         if (digitalRead(Sensor_Puerta) == HIGH) {
           Maquina = Puerta;
-          if (Puerta == INIT_HUMEDAD) {  //porque solo un =?
+          /*if (Puerta == INIT_HUMEDAD) {  //porque solo un =?
             Maquina = INIT_HUMEDAD;
             lcd.clear();
           }
@@ -662,10 +662,6 @@ void codeForCore0Task(void* parameter) {
           }
           if (Puerta == Luz_SUM) {
             Maquina = Luz_SUM;
-            lcd.clear();
-          }
-          if (Puerta == Espera_Pantalla3) {
-            Puerta = Luz_SUM;  //porque?
             lcd.clear();
           }
           if (Puerta == Pantalla3) {
@@ -720,6 +716,9 @@ void codeForCore0Task(void* parameter) {
             Maquina = Umb_Temp;
             lcd.clear();
           }
+          */
+
+          lcd.clear();
         }
         break;
     }
