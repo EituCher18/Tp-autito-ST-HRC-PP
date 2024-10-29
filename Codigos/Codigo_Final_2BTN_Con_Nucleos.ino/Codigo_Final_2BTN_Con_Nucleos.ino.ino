@@ -1,5 +1,5 @@
 //Grupo 8 Eitan Cherniak, Uriel Digestani, Aaron Yabra
-//Agregar un punto en telegram que sea /datos 
+//Agregar un punto en telegram que sea /datos
 #include "Arduino.h"
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -66,6 +66,7 @@ uint8_t Verifi_Puerta = 0;
 uint8_t Verifi_Luz = 0;
 uint8_t Umb_Temp_Variable;
 uint8_t Verifi_Temp = 0;
+uint8_t Subir = 1;
 enum Estados {
   INIT_HUMEDAD,
   INIT_TEMPERATURA,
@@ -175,6 +176,7 @@ void Eeprom() {
     preferences.putInt("Intervalo_Eeprom", Intervalo);
     preferences.putInt("Umb_Lum_Eeprom", Umb_Lum);
     preferences.putInt("Umb_Temp_Variable_Eeprom", Umb_Temp_Variable);
+    Subir = 0;
   }
 }
 void pines() {
@@ -315,9 +317,14 @@ void codeForCore0Task(void* parameter) {
         break;
 
       case Umb_Temp:
+        if (digitalRead(Sensor_Puerta) == LOW) {
+          lcd.clear();
+          Maquina = Door;
+          Puerta = Umb_Temp;
+        }
         lcd.setCursor(0, 0);
         lcd.print("El Umbral es:");
-        lcd.setCursor(0,1);
+        lcd.setCursor(0, 1);
         lcd.print(Umb_Temp_Variable);
         if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
           Maquina = Espera_Pantalla2;
@@ -537,8 +544,9 @@ void codeForCore0Task(void* parameter) {
         }
         if (digitalRead(BTN_SUM) == HIGH) {
           Maquina = T_Eeprom;
-          Intervalo=Intervalo+10000;                }
+          Intervalo = Intervalo + 10000;
         }
+
         if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
           Maquina = Espera_Pantalla4;
         }
@@ -551,7 +559,7 @@ void codeForCore0Task(void* parameter) {
         }
         if (digitalRead(BTN_RES) == HIGH) {
           Maquina = T_Eeprom;
-          Intervalo=Intervalo - 10000;                         
+          Intervalo = Intervalo - 10000;
         }
         if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
           Maquina = Espera_Pantalla4;
@@ -634,85 +642,90 @@ void codeForCore0Task(void* parameter) {
         lcd.print("Hay una puerta");
         lcd.setCursor(0, 1);
         lcd.print("abierta");
-        if (digitalRead(Sensor_Puerta) == LOW) {
-          Maquina=Puerta;
-          /*if (Puerta = INIT_HUMEDAD) {  //porque solo un =?
+        if (digitalRead(Sensor_Puerta) == HIGH) {
+          Maquina = Puerta;
+          if (Puerta == INIT_HUMEDAD) {  //porque solo un =?
             Maquina = INIT_HUMEDAD;
             lcd.clear();
           }
-          if (Puerta = INIT_TEMPERATURA) {
+          if (Puerta == INIT_TEMPERATURA) {
             Maquina = INIT_TEMPERATURA;  //es mas facil que esto
             lcd.clear();
           }
-          if (Puerta = Espera_Pantalla2) {
+          if (Puerta == Espera_Pantalla2) {
             Maquina = Espera_Pantalla2;
             lcd.clear();
           }
-          if (Puerta = Pantalla2) {
+          if (Puerta == Pantalla2) {
             Maquina = Pantalla2;
             lcd.clear();
           }
-          if (Puerta = Luz_SUM) {
+          if (Puerta == Luz_SUM) {
             Maquina = Luz_SUM;
             lcd.clear();
           }
-          if (Puerta = Espera_Pantalla3) {
-            Puerta = Luz_SUM;            //porque?
+          if (Puerta == Espera_Pantalla3) {
+            Puerta = Luz_SUM;  //porque?
             lcd.clear();
           }
-          if (Puerta = Pantalla3) {
+          if (Puerta == Pantalla3) {
             Maquina = Pantalla3;
             lcd.clear();
           }
-          if (Puerta = Ventilador_Up) {
+          if (Puerta == Ventilador_Up) {
             Maquina = Ventilador_Up;
             lcd.clear();
           }
-          if (Puerta = Ventilador_Down) {
+          if (Puerta == Ventilador_Down) {
             Maquina = Ventilador_Down;
             lcd.clear();
           }
-          if (Puerta = Espera_Pantalla4) {
+          if (Puerta == Espera_Pantalla4) {
             Maquina = Espera_Pantalla4;
             lcd.clear();
           }
-          if (Puerta = Pantalla4) {
+          if (Puerta == Pantalla4) {
             Maquina = Pantalla4;
             lcd.clear();
           }
-          if (Puerta = Sum_Leds) {
+          if (Puerta == Sum_Leds) {
             Maquina = Sum_Leds;
             lcd.clear();
           }
-          if (Puerta = Rest_Leds) {
+          if (Puerta == Rest_Leds) {
             Maquina = Rest_Leds;
             lcd.clear();
           }
-          if (Puerta = Espera_Pantalla_INIT) {
+          if (Puerta == Espera_Pantalla_INIT) {
             Maquina = Espera_Pantalla_INIT;
             lcd.clear();
           }
-          if (Puerta = Espera_T_Eeprom) {
+          if (Puerta == Espera_T_Eeprom) {
             Maquina = Espera_T_Eeprom;
             lcd.clear();
           }
-          if (Puerta = T_Eeprom) {
+          if (Puerta == T_Eeprom) {
             Maquina = T_Eeprom;
             lcd.clear();
           }
-          if (Puerta = Sub_Eeprom) {
+          if (Puerta == Sub_Eeprom) {
             Maquina = Sub_Eeprom;
             lcd.clear();
           }
-          if (Puerta = Baj_Eeprom) {
+          if (Puerta == Baj_Eeprom) {
             Maquina = Baj_Eeprom;
             lcd.clear();
           }
-          */
+          if (Puerta == Umb_Temp) {
+            Maquina = Umb_Temp;
+            lcd.clear();
+          }
         }
+        break;
     }
   }
 }
+
 void codeForCore1Task(void* parameter) {
   uint8_t numNewMessages;
   uint8_t stateMessage = 0;
@@ -730,6 +743,7 @@ void codeForCore1Task(void* parameter) {
   }
 }
 
+
 void handleNewMessages(int numNewMessages) {
   String text = "";
   for (int i = 0; i < numNewMessages; i++) {
@@ -740,7 +754,7 @@ void handleNewMessages(int numNewMessages) {
     if (from_name == "") from_name = "Guest";
 
 
-    if(text == "/Comandos"){
+    if (text == "/Comandos") {
       String MensajeComandos = "/Comandos, /Esta_Prendido?, /Temperatura_actual, /Humedad_actual, /La_baliza_esta_prendida?, /Encender_baliza, /Apagar_baliza, /Umbral, /Ventilador, /Buzzer";
     }
 
@@ -772,11 +786,8 @@ void handleNewMessages(int numNewMessages) {
       Leds = 0;
       bot.sendMessage(chat_id, "Se apago la baliza");
     }
-<<<<<<< HEAD
-    if (text == "/Umbral_Luz") {
-=======
+
     if (text == "/Umbral") {
->>>>>>> 8c6d6b2ddb3504d65bb4246f7062c2c12be6a0e8
       i++;
       text = bot.messages[i].text;
       Umb_Lum = text.toInt();
@@ -817,6 +828,10 @@ void handleNewMessages(int numNewMessages) {
     }
     if (analogRead(LDR) < Umb_Lum) {
       Verifi_Luz = 0;
+    }
+    if (Subir == 0) {
+      bot.sendMessage(chat_id, "Se guardaron las cosas en el Eeprom");
+      Subir = 1;
     }
   }
 }
