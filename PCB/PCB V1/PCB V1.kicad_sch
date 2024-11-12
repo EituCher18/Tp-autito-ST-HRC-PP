@@ -5988,28 +5988,6 @@
 			)
 		)
 	)
-	(global_label "RELE-B"
-		(shape input)
-		(at 120.65 66.04 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "2e89ece6-44cc-4802-b555-89c1dfc4022f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 131.0737 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "SDA"
 		(shape input)
 		(at 120.65 45.72 0)
@@ -6072,6 +6050,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RELE-A"
+		(shape input)
+		(at 82.55 63.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "46eade90-9f43-42b4-96a7-e242cf4925ad")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.3077 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -6408,6 +6408,28 @@
 	)
 	(global_label "RELE-B"
 		(shape input)
+		(at 120.65 58.42 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c135a84f-f569-4b8c-88b8-61d98f2009b1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 131.0737 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RELE-B"
+		(shape input)
 		(at 52.07 132.08 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6490,28 +6512,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "RELE-A"
-		(shape input)
-		(at 120.65 73.66 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "f62d6b7f-4190-4fd5-9941-f59ad376a48b")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 130.8923 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
