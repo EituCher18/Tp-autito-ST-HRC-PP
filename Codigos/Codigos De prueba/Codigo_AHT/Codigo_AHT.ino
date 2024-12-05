@@ -24,6 +24,7 @@ void setup() {
     delay(5000);
   }
   Serial.println("Se conecto");
+  
 }
 
 void loop() {

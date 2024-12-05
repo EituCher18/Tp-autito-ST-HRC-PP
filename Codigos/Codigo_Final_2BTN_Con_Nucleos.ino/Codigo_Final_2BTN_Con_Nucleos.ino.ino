@@ -9,17 +9,15 @@
 #include <ArduinoJson.h>
 #include <UniversalTelegramBot.h>
 #include <WiFi.h>
-#include <Adafruit_INA219.h>
-
 
 ///WiFi
-#define WIFI_SSID "Los Cherni"
-#define WIFI_PASSWORD "Acoyte2021"
+#define WIFI_SSID "ORT-IoT"
+#define WIFI_PASSWORD "OrtIOT24"
 
 
 ///Cosas del bot de telegram
-#define BOTtoken "7702202258:AAFp92KQO4fWHdNxIgqcqGWbvvLalIw3PSU"
-#define CHAT_ID "7702202258"
+#define BOTtoken "7709905340:AAGwMS6IGC6YkbMowyvxVoss5Iepm86OvQw"
+#define CHAT_ID "7709905340"
 WiFiClientSecure client;
 UniversalTelegramBot bot(BOTtoken, client);
 
@@ -33,15 +31,16 @@ unsigned long Ms_Buzzer;
 unsigned long Ms_Envio_Temperatura;
 
 
+
 ///Pines
-#define BTN_SUM 10
-#define BTN_RES 9
+#define BTN_SUM 32
+#define BTN_RES 33
 #define Led_A1 25
 #define Led_A2 23
 #define Led_B1 24
 #define Led_B2 22
-#define LDR 11
-#define Rele 13
+#define LDR 35
+#define Rele 14
 #define Cooler 12
 #define BUZZER_PIN 21
 #define Sensor_Puerta 7
@@ -49,11 +48,6 @@ unsigned long Ms_Envio_Temperatura;
 
 // AHT10
 AHT10 myAHT10(0x38);
-
-//INA219
-Adafruit_INA219 ina219;
-float current_mA = 0;
-
 
 /// LCD
 uint8_t lcdAddress = 0x27;
@@ -97,10 +91,7 @@ enum Estados {
   espera_Umb_Temp,
   Umb_Temp,
   Umb_Temp_Res,
-  Umb_Temp_Sum,
-  espera_INA,
-  pantalla_INA,
-
+  Umb_Temp_Sum
 };
 enum Baliza {
   On,
@@ -131,8 +122,6 @@ void SetupContadores();
 
 void SetupEeprom();
 
-void SetupINA();
-
 void pines();
 
 void Buzzer_Maquina();
@@ -155,9 +144,6 @@ void Venti() {
   if (Ventilador == 0) {
     digitalWrite(Cooler, LOW);
   }
-}
-void Get_Corriente_INA() {
-  current_mA = ina219.getCurrent_mA();
 }
 void S_Luz() {
   if (analogRead(LDR) >= Umb_Lum) {
@@ -183,14 +169,10 @@ void SetupEeprom() {
   Umb_Lum = preferences.getInt("Umb_Lum_Eeprom", 500);
   Umb_Temp_Variable = preferences.getInt("Umb_Temp_Variable_Eeprom", 24);
 }
-
-void SetupINA() {
-  ina219.begin();
-}
-
 void Eeprom() {
   if (millis() - Ms_Eeprom >= Intervalo) {
     Ms_Eeprom = millis();
+    Intervalo_Corto = Intervalo / 1000;
     preferences.putInt("Intervalo_Eeprom", Intervalo);
     preferences.putInt("Umb_Lum_Eeprom", Umb_Lum);
     preferences.putInt("Umb_Temp_Variable_Eeprom", Umb_Temp_Variable);
@@ -270,7 +252,6 @@ void setup() {
   //setupLibrerias();
   SetupContadores();
   //SetupEeprom();
-  SetupINA();
   pines();
   Setup_Nucleos();
   Maquina = INIT_HUMEDAD;
@@ -280,10 +261,9 @@ void loop() {
 }
 void codeForCore0Task(void* parameter) {
   for (;;) {
-      Eeprom();
+    Eeprom();
     Baliza();
     Venti();
-    Get_Corriente_INA();
     switch (Maquina) {
       case INIT_HUMEDAD:
         if (digitalRead(Sensor_Puerta) == LOW) {
@@ -534,7 +514,6 @@ void codeForCore0Task(void* parameter) {
         lcd.setCursor(0, 1);
         lcd.print("guardado");
         lcd.setCursor(9, 1);
-        Intervalo_Corto = Intervalo / 1000;
         lcd.print(Intervalo_Corto);
         lcd.setCursor(13, 1);
         lcd.print("Seg");
@@ -544,7 +523,7 @@ void codeForCore0Task(void* parameter) {
           Puerta = T_Eeprom;
         }
         if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
-          Maquina = espera_INA;
+          Maquina = Espera_Pantalla4;
         }
 
         if (digitalRead(BTN_SUM == LOW)) {
@@ -557,38 +536,6 @@ void codeForCore0Task(void* parameter) {
           Maquina = Baj_Eeprom;
         }
         break;
-      case espera_INA:
-        if (digitalRead(Sensor_Puerta) == LOW) {
-          lcd.clear();
-          Maquina = Door;
-          Puerta = Espera_T_Eeprom;
-        }
-        if (digitalRead(BTN_RES) == HIGH && digitalRead(BTN_SUM) == HIGH) {
-          lcd.clear();
-          Maquina = pantalla_INA;
-        }
-        break;
-      case pantalla_INA:
-
-        lcd.setCursor(0, 0);
-        lcd.print("La corriente medida");
-        lcd.setCursor(0, 1);
-        lcd.print("es: ");
-        lcd.setCursor(5, 1);
-        lcd.print(current_mA);
-        lcd.setCursor(13, 1);
-        lcd.print("mA");
-        if (digitalRead(Sensor_Puerta) == LOW) {
-          lcd.clear();
-          Maquina = Door;
-          Puerta = pantalla_INA;
-        }
-        if (digitalRead(BTN_RES) == LOW && digitalRead(BTN_SUM) == LOW) {
-          Maquina = Espera_Pantalla4;
-        }
-
-        break;
-
       case Sub_Eeprom:
         if (digitalRead(Sensor_Puerta) == LOW) {
           lcd.clear();
@@ -807,12 +754,9 @@ void handleNewMessages(int numNewMessages) {
 
 
     if (text == "/Comandos") {
-      String MensajeComandos = "/Comandos, /Data, /Esta_Prendido?, /Corriente, /Temperatura_actual, /Humedad_actual, /La_baliza_esta_prendida?, /Encender_baliza, /Apagar_baliza, /Umbral, /Ventilador, /Buzzer";
+      String MensajeComandos = "/Comandos, /Esta_Prendido?, /Temperatura_actual, /Humedad_actual, /La_baliza_esta_prendida?, /Encender_baliza, /Apagar_baliza, /Umbral, /Ventilador, /Buzzer";
     }
-    if (text == "/Data") {
-      String Mensaje_Datos = "Prendido, Temp:" + String(myAHT10.readTemperature()) + ", Hum:" + String(myAHT10.readHumidity()) + "%, Corriente:" + String(current_mA) + "mA, Umbral:" + String(Umb_Lum) + ", Estado:" + String(Maquina);
-      bot.sendMessage(chat_id, Mensaje_Datos);
-    }
+
     if (text == "/Esta_Prendido?") {
       bot.sendMessage(chat_id, "Si  https://youtu.be/xvFZjo5PgG0");
     }
@@ -824,10 +768,6 @@ void handleNewMessages(int numNewMessages) {
     if (text == "/Humedad_actual") {
       String Mesagge_Hum = "La Humdad actual: " + String(myAHT10.readHumidity()) + " %";
       bot.sendMessage(chat_id, Mesagge_Hum);
-    }
-    if (text == "/Corriente") {
-      String Mensaje_Corriente = "La corriente medida es:" + String(current_mA) + "mA";
-      bot.sendMessage(chat_id, Mensaje_Corriente);
     }
 
     if (text == "/La_baliza_esta_prendida?") {
